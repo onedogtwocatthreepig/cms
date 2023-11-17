@@ -1,0 +1,49 @@
+# 公共的配置
+spring:
+  mvc:
+    pathmatch: # swagger版本太高
+      matching-strategy: ant_path_matcher
+  profiles: # 选择开发环境
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+# mybatis配置 映射文件 别名 驼峰 日志
+#mybatis:
+#  mapper-locations: classpath:mapper/**/*Dao.xml
+#  type-aliases-package: com.briup.core.bean
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+# 开启sql日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    db-config:
+      id-type: assign_id   # 所有实体默认采取该规则
+      logic-delete-field: deleted  # 逻辑删除的字段 更新该字段
+      logic-not-delete-value: 0 # 未删除的值
+      logic-delete-value: 1  # 删除后的值
+  mapper-locations: classpath:mapper/**/*Dao.xml
+  type-aliases-package: com.briup.core.bean
+
+upload:
+  method: qiniu
+  filePath: E:/A杰普实训三/IdeaWorkSpace/cms/images/ #本地映射路径
+  #自定义配置 配置七牛云OSS对象存储  java -jar server.jar acc== ; se
+  oss: # ${accessKey} 来自环境变量的值 accessKey=****;secretKey=****;bucket=wangsidandan
+    accessKey: "aWHQpyoZ1cWHEi7cWf-ubaHoCDh_gixnMBISIA9q"
+    # 配置SK
+    secretKey:  "TDTY18ny6enEZbRF240hx4loLKZKjKYQrhEu62ua"
+    # 配置桶（存储空间)
+    bucket: "jd2312"
+    # 配置基础域名（测试域名或个人完成备案和解析的域名）
+    baseUrl: "http://s3qp1vmyy.hn-bkt.clouddn.com/"
+
+
